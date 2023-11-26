@@ -17,15 +17,22 @@ class UI {
       if (clicked === "Email") {
         this.messagePl.setAttribute("placeholder", "example@mail.com");
         this.messagePl.value = "";
+        ui.Output.className = "alert alert-primary mb-0 ";
+        ui.Output.textContent = "Validate Your User Input";
         return clicked;
       } else if (clicked === "Phone-Number") {
         this.messagePl.setAttribute("placeholder", "01xxx-xxxxxx");
         this.messagePl.value = "";
+        ui.Output.textContent = "Validate Your User Input";
+        ui.Output.className = "alert alert-primary mb-0 ";
 
         return clicked;
       } else if (clicked === "Post-Code") {
         this.messagePl.setAttribute("placeholder", "3300");
         this.messagePl.value = "";
+        ui.Output.textContent = "Validate Your User Input";
+        ui.Output.className = "alert alert-primary mb-0 ";
+
         return clicked;
       }
     });
@@ -60,10 +67,8 @@ class UI {
           RegExp(userText, re);
           break;
         case value === "postCode" && message:
-          console.log(message, value);
           re = /^[0-9]{4}$/;
           RegExp(userText, re);
-          console.log(result);
           break;
         default:
           let text = "No value found";
@@ -73,11 +78,34 @@ class UI {
       function RegExp(userText, re) {
         let result;
         if (re.test(userText)) {
-          result = ui.Output.textContent = "Your Input is Valid";
-          ui.Output.className = "alert alert-success mb-0 ";
+          document.querySelector("#outPut").parentElement.innerHTML = `
+          <div class="text-center">
+           <div class="spinner-border text-info" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+          </div>
+        `;
+          setTimeout((e) => {
+            document.querySelector("#outputCard").innerHTML = `
+              <h1 id="outPut" class="alert alert-success mb-0">
+                Your Input is Valid
+              </h1>`;
+          }, 200);
         } else {
-          result = ui.Output.textContent = "Your Input is Invalid";
-          ui.Output.className = "alert alert-danger mb-0 ";
+          document.querySelector("#outPut").parentElement.innerHTML = `
+          <div class="text-center">
+          <div class="spinner-border text-info" role="status">
+            <span class="visually-hidden">Loading...</span>
+          </div>
+        </div>
+        `;
+
+          setTimeout((e) => {
+            document.querySelector("#outputCard").innerHTML = `
+              <h1 id="outPut" class="alert alert-danger mb-0">
+                Your Input is Invalid
+              </h1>`;
+          }, 200);
         }
 
         return result;
@@ -90,3 +118,11 @@ let ui = new UI();
 
 ui.PlaceHolder();
 ui.Validate();
+
+// setTimeout((e) => {
+//   document.querySelector("#output").innerHTML = `
+//   <div class="spinner-border" role="status">
+//   <span class="visually-hidden">Loading...</span>
+// </div>
+//   `;
+// }, 2000);
