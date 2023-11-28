@@ -17,22 +17,28 @@ class UI {
       if (clicked === "Email") {
         this.messagePl.setAttribute("placeholder", "example@mail.com");
         this.messagePl.value = "";
-        ui.Output.className = "alert alert-primary mb-0 ";
-        ui.Output.textContent = "Validate Your User Input";
+        document.querySelector("#outputCard").innerHTML = `
+        <h1 id="outPut" class="alert alert-primary mb-0">
+          Validate Your User Input
+        </h1>`;
+
         return clicked;
       } else if (clicked === "Phone-Number") {
         this.messagePl.setAttribute("placeholder", "01xxx-xxxxxx");
         this.messagePl.value = "";
-        ui.Output.textContent = "Validate Your User Input";
-        ui.Output.className = "alert alert-primary mb-0 ";
+        document.querySelector("#outputCard").innerHTML = `
+        <h1 id="outPut" class="alert alert-primary mb-0">
+          Validate Your User Input
+        </h1>`;
 
         return clicked;
       } else if (clicked === "Post-Code") {
         this.messagePl.setAttribute("placeholder", "3300");
         this.messagePl.value = "";
-        ui.Output.textContent = "Validate Your User Input";
-        ui.Output.className = "alert alert-primary mb-0 ";
-
+        document.querySelector("#outputCard").innerHTML = `
+        <h1 id="outPut" class="alert alert-primary mb-0">
+          Validate Your User Input
+        </h1>`;
         return clicked;
       }
     });
@@ -118,11 +124,3 @@ let ui = new UI();
 
 ui.PlaceHolder();
 ui.Validate();
-
-// setTimeout((e) => {
-//   document.querySelector("#output").innerHTML = `
-//   <div class="spinner-border" role="status">
-//   <span class="visually-hidden">Loading...</span>
-// </div>
-//   `;
-// }, 2000);
